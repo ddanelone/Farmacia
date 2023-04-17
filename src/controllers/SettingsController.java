@@ -13,6 +13,7 @@ public class SettingsController implements MouseListener {
     this.views =views;
     this.views.jLabelProducts.addMouseListener(this);
     this.views.jLabelPurchases.addMouseListener(this);
+    this.views.jLabelSales.addMouseListener(this);
     this.views.jLabelCustomer.addMouseListener(this);
     this.views.jLabelEmployees.addMouseListener(this);  
     this.views.jLabelSuppliers.addMouseListener(this);
@@ -39,6 +40,8 @@ public class SettingsController implements MouseListener {
             views.jPanelProducts.setBackground(new Color(152,202,63));
         } else if(e.getSource()== views.jLabelPurchases) {
             views.jPanelPurchases.setBackground(new Color(152,202, 63));
+        } else if(e.getSource()== views.jLabelSales) {
+            views.jPanelSales.setBackground(new Color(152,202, 63));
         } else if(e.getSource()== views.jLabelCategories) {
             views.jPanelCategories.setBackground(new Color(152,202, 63));
         } else if(e.getSource()== views.jLabelCustomer) {
@@ -60,6 +63,8 @@ public class SettingsController implements MouseListener {
             views.jPanelProducts.setBackground(new Color(18,45,61));
         } else if(e.getSource()== views.jLabelPurchases) {
             views.jPanelPurchases.setBackground(new Color(18,45,61));
+        } else if(e.getSource()== views.jLabelSales) {
+            views.jPanelSales.setBackground(new Color(18,45,61));
         } else if(e.getSource()== views.jLabelCategories) {
             views.jPanelCategories.setBackground(new Color(18,45,61));
         } else if(e.getSource()== views.jLabelCustomer) {
