@@ -1,21 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package views;
 
+import controllers.LoginController;
+import models.Employees;
+import models.EmployeesDao;
 
-/**
- *
- * @author gianluigi
- */
 public class LoginView extends javax.swing.JFrame {
 
+    Employees employee = new Employees();
+    EmployeesDao employee_dao = new EmployeesDao();
     
     public LoginView() {
         initComponents();
         //Controlador del login
+        LoginController employee_login = new LoginController(employee, employee_dao, this);
         setSize(930, 415);
         setResizable(false);
         setTitle("Ingresar al sistema");
