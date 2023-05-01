@@ -75,7 +75,7 @@ public class CustomersDao {
     
     //Modificar cliente
        public boolean updateCustomerQuery(Customers customer) {
-        String query = "UPDATE customers SET  full_name = ?, address = ?, telephone = ?, email = ?,updated= ?) " + "WHERE id = ?";
+        String query = "UPDATE customers SET  full_name = ?, address = ?, telephone = ?, email = ?,updated= ? " + "WHERE id = ?";
         
         Timestamp datetime = new Timestamp(new Date().getTime());
         try {
@@ -98,7 +98,7 @@ public class CustomersDao {
        
     //Eliminar cliente
       public boolean deleteCustomer_Query(int id) {
-          String query = "DETE FROM customers WHERE id = " + id;
+          String query = "DELETE FROM customers WHERE id = " + id;
           
           try {
               conn = cn.getConnection();
@@ -107,7 +107,7 @@ public class CustomersDao {
               return true;
           
           } catch(SQLException e) {
-              JOptionPane.showConfirmDialog(null,"No puede eliminar un cliente que tenga relación con otra  tabla");
+              JOptionPane.showMessageDialog(null,"No puede eliminar un cliente que tenga relación con otra  tabla");
               return false;
           
           }

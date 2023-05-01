@@ -42,11 +42,10 @@ public class ProductsDao {
     }
     
     //Listar productos
-    public List listProudctsQuery(String value) {
+    public List listProductsQuery(String value) {
         List<Products> list_products = new ArrayList();
         String query = "SELECT pro.*, ca.name AS category_name FROM products pro, categories ca WHERE pro.category_id = ca.id";
-        String query_search_product = "SELECT pro.*,ca.name AS category_name FROM products pro INNER JOIN categories ca"
-                + "ON pro.category_id = ca.id WHERE pro.name LIKE '%" + value + "%'";
+        String query_search_product = "SELECT pro.*,ca.name AS category_name FROM products pro INNER JOIN categories ca ON pro.category_id = ca.id WHERE pro.name LIKE '%" + value + "%'";
         
         try {
              conn =  cn.getConnection();
@@ -76,8 +75,7 @@ public class ProductsDao {
     
     //Modificar producto
      public boolean updateProductQuery(Products product) {
-        String query = "UPDATE products SET code=?, name=?, description=?, unit_price=?, updated=?, category_id, "
-                + "category_id = ? WHERE ID = ?";
+        String query = "UPDATE products SET code=?, name=?, description=?, unit_price=?, updated=?, category_id=? WHERE ID = ?";
     
          Timestamp datetime = new Timestamp(new Date().getTime());
         try {
@@ -99,8 +97,8 @@ public class ProductsDao {
     }
 
      //Eliminar producto
-       public boolean deletProductQuery(int id) {
-          String query = "DETE FROM products WHERE id = " + id;
+       public boolean deleteProductQuery(int id) {
+          String query = "DELETE FROM products WHERE id = " + id;
           
           try {
               conn = cn.getConnection();
@@ -116,8 +114,7 @@ public class ProductsDao {
        
         //Buscar un producto
        public Products searchProduct(int id) {
-        String query = "SELECT pro.*, ca.name AS category_name FROM products pro "
-                + "INNER JOIN categories ca ON pro.category_id =ca.id WHERE pro.id = ?";
+        String query = "SELECT pro.*, ca.name AS category_name FROM products pro INNER JOIN categories ca ON pro.category_id =ca.id WHERE pro.id = ?";
         Products product = new Products();
         
         try {
@@ -136,36 +133,33 @@ public class ProductsDao {
                 product.setCategory_name(rs.getString("category_name"));
             }            
         } catch(SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
         return product;
        }
        
        //Buscar producto por código
-       public Products searchCode(int code) {
-        String query = "SELECT pro.id, pro.name FROM proudcts pro WHERE pro.code = ?";
+      //Buscar producto por código
+    public Products searchCode(int code){
+        String query = "SELECT pro.id, pro.name FROM products pro WHERE pro.code = ?";
         Products product = new Products();
-        
-        try {
+    
+        try{
             conn = cn.getConnection();
             pst = conn.prepareStatement(query);
-            pst.setInt(1,code);
+            pst.setInt(1, code);
             rs = pst.executeQuery();
             
-            if(rs.next()) {
+            if(rs.next()){
                 product.setId(rs.getInt("id"));
-                product.setCode(rs.getInt("code"));
                 product.setName(rs.getString("name"));
-                product.setDescription(rs.getString("description"));
-                product.setUnit_price(rs.getDouble("unit_price"));
-                product.setCategory_id(rs.getInt("category_id"));
-                product.setCategory_name(rs.getString("category_name"));
-            }            
-        } catch(SQLException e) {
+            }
+            
+        }catch(SQLException e){
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return product;
-       }
+    }
        
        //Traer la cantidad de productos
        public Products searchId(int id) {

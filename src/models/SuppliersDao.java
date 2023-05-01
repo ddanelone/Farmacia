@@ -11,23 +11,26 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class SuppliersDao {
-    //Instanciar la conexión
+    
+    //Instanciar la conexiÃ³n
     ConnectionMySQL cn = new ConnectionMySQL();
     Connection conn;
     PreparedStatement pst;
     ResultSet rs;
     
     //Registrar proveedor
-    public boolean registerSupplierQuery(Suppliers supplier) {
-        String query = "INSERT INTO supplier (name, description, address, telephone, email, city, created, updated)" + "VALUES(?,?,?,?,?,?,?,?)";
+    public boolean registerSupplierQuery(Suppliers supplier){
+        String query = "INSERT INTO suppliers (name, description, address, telephone, email, city, created, updated)"
+                + "VALUES(?,?,?,?,?,?,?,?)";
+        
         Timestamp datetime = new Timestamp(new Date().getTime());
         
-        try {
+        try{
             conn = cn.getConnection();
             pst = conn.prepareStatement(query);
             pst.setString(1, supplier.getName());
             pst.setString(2, supplier.getDescription());
-            pst.setString(3,    supplier.getAddress());
+            pst.setString(3, supplier.getAddress());
             pst.setString(4, supplier.getTelephone());
             pst.setString(5, supplier.getEmail());
             pst.setString(6, supplier.getCity());
@@ -35,28 +38,29 @@ public class SuppliersDao {
             pst.setTimestamp(8, datetime);
             pst.execute();
             return true;
-        } catch(SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al registra al proveedor");
+            
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Error al registrar al proveedor");
             return false;
-        }    
+        }
     }
     
-    //Listar proveedores
-    public List listSuppliersQuery(String value) {
+//Listar proveedores
+    public List listSuppliersQuery(String value){
         List<Suppliers> list_suppliers = new ArrayList();
         String query = "SELECT * FROM suppliers";
         String query_search_supplier = "SELECT * FROM suppliers WHERE name LIKE '%" + value + "%'";
-        
-        try {
-              conn =  cn.getConnection();
+        try{
+           conn = cn.getConnection();
             if (value.equalsIgnoreCase("")) {
-                pst=conn.prepareStatement(query);
+                pst = conn.prepareStatement(query);
+                rs = pst.executeQuery();
             } else {
                 pst = conn.prepareStatement(query_search_supplier);
-            }
-            rs = pst.executeQuery();
+                rs = pst.executeQuery();
+            } 
             
-            while(rs.next()) {
+            while(rs.next()){
                 Suppliers supplier = new Suppliers();
                 supplier.setId(rs.getInt("id"));
                 supplier.setName(rs.getString("name"));
@@ -67,23 +71,24 @@ public class SuppliersDao {
                 supplier.setCity(rs.getString("city"));
                 list_suppliers.add(supplier);
             }
-        } catch (SQLException e) {
-             JOptionPane.showMessageDialog(null, "Se ha producido un error al tratar de listar los proveedores");       
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Error en listSuppliersQuery: "+e.getMessage());
         }
         return list_suppliers;
-    }
-
-    //Modificar proveedores
-    public boolean updateSupplierQuery(Suppliers supplier) {
-        String query = "UPDATE supplier SET name = ?, description=?, address=?, telephone=?, email=?, city=?, updated=? WHERE id = ?";
+    }    
+    //Modificar proveedor
+    public boolean updateSupplierQuery(Suppliers supplier){
+        String query = "UPDATE suppliers SET name = ?, description = ?, address = ?, telephone = ?,"
+                + "email = ?, city = ?, updated = ? WHERE id = ?";
+        
         Timestamp datetime = new Timestamp(new Date().getTime());
         
-        try {
+        try{
             conn = cn.getConnection();
             pst = conn.prepareStatement(query);
             pst.setString(1, supplier.getName());
             pst.setString(2, supplier.getDescription());
-            pst.setString(3,    supplier.getAddress());
+            pst.setString(3, supplier.getAddress());
             pst.setString(4, supplier.getTelephone());
             pst.setString(5, supplier.getEmail());
             pst.setString(6, supplier.getCity());
@@ -91,27 +96,24 @@ public class SuppliersDao {
             pst.setInt(8, supplier.getId());
             pst.execute();
             return true;
-        } catch(SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al actualizar los datos del proveedor");
+            
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Error al modificar los datos del proveedor");
             return false;
-        }    
+        }
     }
-
     
     //Eliminar proveedor
-    public boolean deleteSupplierQuery(int id) {
+    public boolean deleteSupplierQuery(int id){
         String query = "DELETE FROM suppliers WHERE id = " + id;
-        
-        try {
+        try{
             conn = cn.getConnection();
             pst = conn.prepareStatement(query);
             pst.execute();
             return true;
-        
-        } catch(SQLException e) {
-            JOptionPane.showMessageDialog(null, "No puedes elminar un proveedor que tiene relación en otra tabla");
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "No puedes eliminar un proveedor que tiene relación con otra tabla");
             return false;
-        
         }
     }
 }

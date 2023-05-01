@@ -82,7 +82,7 @@ public class CategoriesDao {
     
     //Eliminar categoría
       public boolean deleteCategoryQuery(int id) {
-          String query = "DETE FROM categories WHERE id = " + id;
+          String query = "DELETE FROM categories WHERE id = " + id;
           
           try {
               conn = cn.getConnection();

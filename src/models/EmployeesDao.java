@@ -156,7 +156,7 @@ public class EmployeesDao {
               return true;
           
           } catch(SQLException e) {
-              JOptionPane.showConfirmDialog(null,"No puede eliminar un empleado que tenga relación con otra  tabla");
+              JOptionPane.showMessageDialog(null,"No puede eliminar un empleado que tenga relación con otra  tabla");
               return false;
           
           }

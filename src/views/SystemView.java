@@ -1,11 +1,28 @@
 package views;
 
-import controllers.EmployeeController;
+import controllers.CategoriesController;
+import controllers.CustomersController;
+import controllers.EmployeesController;
+import controllers.ProductsController;
+import controllers.PurchasesController;
 import controllers.SettingsController;
+import controllers.SuppliersController;
+import models.Customers;
+import models.CustomersDao;
 import models.Employees;
 import models.EmployeesDao;
 import static models.EmployeesDao.full_name_user;
 import static models.EmployeesDao.rol_user;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import models.Categories;
+import models.CategoriesDao;
+import models.Products;
+import models.ProductsDao;
+import models.Purchases;
+import models.PurchasesDao;
+import models.Suppliers;
+import models.SuppliersDao;
 
 /**
  *
@@ -16,33 +33,69 @@ public class SystemView extends javax.swing.JFrame {
     //Empleados
     Employees employee = new Employees();
     EmployeesDao employeeDao = new EmployeesDao();
+    //Clientes
+    Customers customer = new Customers();
+    CustomersDao customersDao = new CustomersDao();
+    //Proveedores
+    Suppliers supplier = new Suppliers();
+    SuppliersDao suppliersDao = new SuppliersDao();
+    //Categorías
+    Categories category = new Categories();
+    CategoriesDao categoryDao = new CategoriesDao();
+    //Productos
+    Products product = new Products();
+    ProductsDao productDao = new ProductsDao();
+    //Compras
+    Purchases purchase = new Purchases();
+    PurchasesDao purchaseDao = new PurchasesDao();
     
-    
+
     public SystemView() {
         initComponents();
-        setSize(1208,680);
+        setSize(1208, 680);
         setResizable(false);
         setTitle("Panel de Administración");
         setLocationRelativeTo(null);
         titleInterface();
-        
+
         //Controlador del settings
         SettingsController setting = new SettingsController(this);
         this.repaint();
-        
+
         //Controlador de empleados
-        EmployeeController employee_account = new EmployeeController(employee, employeeDao, this);
+        EmployeesController employee_account = new EmployeesController(employee, employeeDao, this);
         employee_account.listAllEmployees();
+
+        //Controlador de clientes
+        CustomersController customer_account = new CustomersController(customer, customersDao, this);
+        customer_account.listAllCustomers();
+
+        //Controlador de proveedores
+        SuppliersController supplier_account = new SuppliersController(supplier, suppliersDao, this);
+        supplier_account.listAllSuppliers();
+
+        //Controlador de categorías
+        CategoriesController category_section = new CategoriesController(category, categoryDao, this);
+        category_section.listAllCategories();
         
+        //Controlador de productos
+        ProductsController product_section = new ProductsController(product,productDao, this);
+        product_section.listAllProducts();
+        
+        //Controlador de compras
+        PurchasesController purchase_section = new PurchasesController(purchase, purchaseDao, this);
+
     }
-    
+
     public String titleInterface() {
+        LocalDate fechaActual = LocalDate.now();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yy");
         setTitle("Panell - " + rol_user);
         label_name_employee.setText(full_name_user);
         label_name_rol.setText(rol_user);
+        txt_date_today.setText(fechaActual.format(formato));
         return rol_user.trim();
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -73,6 +126,7 @@ public class SystemView extends javax.swing.JFrame {
         btn_logout = new javax.swing.JButton();
         label_name_employee = new javax.swing.JLabel();
         label_name_rol = new javax.swing.JLabel();
+        txt_date_today = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
@@ -208,7 +262,7 @@ public class SystemView extends javax.swing.JFrame {
         jLabel38 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
         txt_supplier_description = new javax.swing.JTextField();
-        txt_supplier_city = new javax.swing.JComboBox<>();
+        cmb_supplier_city = new javax.swing.JComboBox<>();
         txt_supplier_id = new javax.swing.JTextField();
         btn_register_supplier = new javax.swing.JButton();
         btn_update_supplier = new javax.swing.JButton();
@@ -448,21 +502,13 @@ public class SystemView extends javax.swing.JFrame {
         jPanelReports.setLayout(jPanelReportsLayout);
         jPanelReportsLayout.setHorizontalGroup(
             jPanelReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
-            .addGroup(jPanelReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelReportsLayout.createSequentialGroup()
-                    .addGap(2, 2, 2)
-                    .addComponent(jLabelReports, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                    .addGap(3, 3, 3)))
+            .addComponent(jLabelReports, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
         );
         jPanelReportsLayout.setVerticalGroup(
             jPanelReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 49, Short.MAX_VALUE)
-            .addGroup(jPanelReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelReportsLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabelReports, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelReportsLayout.createSequentialGroup()
+                .addComponent(jLabelReports, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanelReports, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 200, 35));
@@ -502,7 +548,7 @@ public class SystemView extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("FARMACIA VIDA NATURAL");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 330, 80));
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 340, 50));
 
         btn_photo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/man.png"))); // NOI18N
         jPanel3.add(btn_photo, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 20, 80, 65));
@@ -523,6 +569,11 @@ public class SystemView extends javax.swing.JFrame {
         label_name_rol.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         label_name_rol.setForeground(new java.awt.Color(255, 255, 255));
         jPanel3.add(label_name_rol, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 50, 130, 25));
+
+        txt_date_today.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txt_date_today.setForeground(new java.awt.Color(255, 255, 255));
+        txt_date_today.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/calendar.png"))); // NOI18N
+        jPanel3.add(txt_date_today, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 190, 30));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 1010, 100));
 
@@ -710,6 +761,13 @@ public class SystemView extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("Proveedor:");
+
+        cmb_purchase_supplier.setEditable(true);
+        cmb_purchase_supplier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_purchase_supplierActionPerformed(evt);
+            }
+        });
 
         txt_purchase_product_name.setEditable(false);
         txt_purchase_product_name.addActionListener(new java.awt.event.ActionListener() {
@@ -1084,7 +1142,7 @@ public class SystemView extends javax.swing.JFrame {
         jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder("Clientes"));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel18.setText("Identificación:");
+        jLabel18.setText("Documento:");
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel19.setText("Nombre completo:");
@@ -1214,7 +1272,7 @@ public class SystemView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Identifiación", "Nombre", "Dirección", "Teléfono", "Correo"
+                "DNI", "Nombre", "Dirección", "Teléfono", "Correo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -1244,7 +1302,7 @@ public class SystemView extends javax.swing.JFrame {
         jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder("Empleados"));
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel24.setText("Identificación:");
+        jLabel24.setText("Documento:");
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel25.setText("Nombre completo:");
@@ -1398,7 +1456,7 @@ public class SystemView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Identifiación", "Nombre", "Nombre de usuario", "Dirección", "Teléfono", "Correo", "Rol"
+                "DNI", "Nombre", "Nombre de usuario", "Dirección", "Teléfono", "Correo", "Rol"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -1456,7 +1514,7 @@ public class SystemView extends javax.swing.JFrame {
         jLabel39.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel39.setText("Id:");
 
-        txt_supplier_city.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Santa Fe", "Santo Tomé", "Recreo", "Monte Vera", "Sauce Viejo" }));
+        cmb_supplier_city.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Santa Fe", "Santo Tomé", "Recreo", "Monte Vera", "Sauce Viejo" }));
 
         txt_supplier_id.setEditable(false);
         txt_supplier_id.setEnabled(false);
@@ -1506,7 +1564,7 @@ public class SystemView extends javax.swing.JFrame {
                             .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(31, 31, 31)
                         .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_supplier_city, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmb_supplier_city, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_supplier_id, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(55, 55, 55)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1533,7 +1591,7 @@ public class SystemView extends javax.swing.JFrame {
                             .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txt_supplier_city, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(cmb_supplier_city, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(btn_register_supplier, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1567,7 +1625,6 @@ public class SystemView extends javax.swing.JFrame {
         jPanel8.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 80, -1));
 
         txt_search_supplier.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txt_search_supplier.setText(" ");
         jPanel8.add(txt_search_supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 190, 30));
 
         suppliers_table.setModel(new javax.swing.table.DefaultTableModel(
@@ -1773,7 +1830,7 @@ public class SystemView extends javax.swing.JFrame {
         none.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Editar perfil", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
         jLabel45.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel45.setText("Identificación:");
+        jLabel45.setText("Documento:");
 
         jLabel46.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel46.setText("Dirección:");
@@ -1966,12 +2023,16 @@ public class SystemView extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_name_profileActionPerformed
 
     private void btn_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_logoutActionPerformed
-        if(evt.getSource() == btn_logout) {
+        if (evt.getSource() == btn_logout) {
             dispose();
             LoginView login = new LoginView();
             login.setVisible(true);
         }
     }//GEN-LAST:event_btn_logoutActionPerformed
+
+    private void cmb_purchase_supplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_purchase_supplierActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmb_purchase_supplierActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2009,40 +2070,41 @@ public class SystemView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_add_product_sale;
+    public javax.swing.JButton btn_add_product_sale;
     public javax.swing.JButton btn_add_product_to_buy;
     public javax.swing.JButton btn_cancel_customer;
     public javax.swing.JButton btn_cancel_employee;
-    private javax.swing.JButton btn_cancel_product;
+    public javax.swing.JButton btn_cancel_product;
     public javax.swing.JButton btn_cancel_supplier;
     public javax.swing.JButton btn_confirm_purchase;
-    private javax.swing.JButton btn_confirm_sale;
+    public javax.swing.JButton btn_confirm_sale;
     public javax.swing.JButton btn_delete_category;
     public javax.swing.JButton btn_delete_customer;
     public javax.swing.JButton btn_delete_employee;
-    private javax.swing.JButton btn_delete_product;
+    public javax.swing.JButton btn_delete_product;
     public javax.swing.JButton btn_delete_supplier;
-    private javax.swing.JButton btn_logout;
+    public javax.swing.JButton btn_logout;
     public javax.swing.JButton btn_modify_data;
     public javax.swing.JButton btn_new_purchase;
-    private javax.swing.JButton btn_new_sale;
+    public javax.swing.JButton btn_new_sale;
     private javax.swing.JButton btn_photo;
     public javax.swing.JButton btn_register_category;
     public javax.swing.JButton btn_register_customer;
     public javax.swing.JButton btn_register_employee;
-    private javax.swing.JButton btn_register_product;
+    public javax.swing.JButton btn_register_product;
     public javax.swing.JButton btn_register_supplier;
     public javax.swing.JButton btn_remove_purchase;
-    private javax.swing.JButton btn_remove_sale;
+    public javax.swing.JButton btn_remove_sale;
     public javax.swing.JButton btn_update_category;
     public javax.swing.JButton btn_update_customer;
     public javax.swing.JButton btn_update_employee;
-    private javax.swing.JButton btn_update_product;
+    public javax.swing.JButton btn_update_product;
     public javax.swing.JButton btn_update_supplier;
     public javax.swing.JTable categories_table;
     public javax.swing.JComboBox<Object> cmb_product_category;
-    public javax.swing.JComboBox<String> cmb_purchase_supplier;
+    public javax.swing.JComboBox<Object> cmb_purchase_supplier;
     public javax.swing.JComboBox<String> cmb_rol;
+    public javax.swing.JComboBox<String> cmb_supplier_city;
     public javax.swing.JTable customers_table;
     public javax.swing.JTable employees_table;
     private javax.swing.JLabel jLabel1;
@@ -2170,6 +2232,7 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JTextField txt_customer_fullname;
     public javax.swing.JTextField txt_customer_id;
     public javax.swing.JTextField txt_customer_telephone;
+    public javax.swing.JLabel txt_date_today;
     public javax.swing.JTextField txt_email_profile;
     public javax.swing.JTextField txt_employee_address;
     public javax.swing.JTextField txt_employee_email;
@@ -2208,14 +2271,14 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JTextField txt_search_category;
     public javax.swing.JTextField txt_search_customer;
     public javax.swing.JTextField txt_search_employee;
-    private javax.swing.JTextField txt_search_product;
+    public javax.swing.JTextField txt_search_product;
     public javax.swing.JTextField txt_search_supplier;
     public javax.swing.JTextField txt_supplier_address;
-    public javax.swing.JComboBox<String> txt_supplier_city;
     public javax.swing.JTextField txt_supplier_description;
     public javax.swing.JTextField txt_supplier_email;
     public javax.swing.JTextField txt_supplier_id;
     public javax.swing.JTextField txt_supplier_name;
     public javax.swing.JTextField txt_supplier_telephone;
     // End of variables declaration//GEN-END:variables
+
 }
