@@ -1495,11 +1495,11 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel52" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="txt_sale_product_code" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txt_sale_product_code" min="-2" pref="62" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel58" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txt_sale_product_id" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txt_sale_product_id" min="-2" pref="62" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
@@ -1515,7 +1515,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel55" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="txt_sale_product_quantity" min="-2" pref="165" max="-2" attributes="0"/>
+                                      <Component id="txt_sale_quantity" min="-2" pref="165" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel53" min="-2" max="-2" attributes="0"/>
@@ -1538,7 +1538,7 @@
                               <Component id="txt_sale_subtotal" min="-2" pref="165" max="-2" attributes="0"/>
                               <Component id="txt_sale_price" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="42" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="btn_confirm_sale" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
                               <Component id="btn_add_product_sale" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
@@ -1572,7 +1572,7 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txt_sale_product_quantity" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="txt_sale_quantity" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel55" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel61" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1680,7 +1680,7 @@
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txt_sale_product_quantity">
+                <Component class="javax.swing.JTextField" name="txt_sale_quantity">
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>

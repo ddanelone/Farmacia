@@ -185,7 +185,7 @@ public class SystemView extends javax.swing.JFrame {
         jLabel58 = new javax.swing.JLabel();
         txt_sale_product_id = new javax.swing.JTextField();
         txt_sale_product_name = new javax.swing.JTextField();
-        txt_sale_product_quantity = new javax.swing.JTextField();
+        txt_sale_quantity = new javax.swing.JTextField();
         txt_sale_customer_id = new javax.swing.JTextField();
         txt_sale_total_to_pay = new javax.swing.JTextField();
         jLabel59 = new javax.swing.JLabel();
@@ -1021,11 +1021,11 @@ public class SystemView extends javax.swing.JFrame {
                     .addGroup(jPanel18Layout.createSequentialGroup()
                         .addComponent(jLabel52)
                         .addGap(18, 18, 18)
-                        .addComponent(txt_sale_product_code, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_sale_product_code, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel58)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_sale_product_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_sale_product_id, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(jPanel18Layout.createSequentialGroup()
                             .addComponent(jLabel57)
@@ -1038,7 +1038,7 @@ public class SystemView extends javax.swing.JFrame {
                         .addGroup(jPanel18Layout.createSequentialGroup()
                             .addComponent(jLabel55)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_sale_product_quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_sale_quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel18Layout.createSequentialGroup()
                             .addComponent(jLabel53)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1055,7 +1055,7 @@ public class SystemView extends javax.swing.JFrame {
                     .addComponent(txt_sale_stock, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_sale_subtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_sale_price, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_confirm_sale, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_add_product_sale, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1084,7 +1084,7 @@ public class SystemView extends javax.swing.JFrame {
                             .addComponent(txt_sale_subtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(20, 20, 20)
                         .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_sale_product_quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_sale_quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel55)
                                 .addComponent(jLabel61)
@@ -2264,7 +2264,7 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JTextField txt_sale_product_code;
     public javax.swing.JTextField txt_sale_product_id;
     public javax.swing.JTextField txt_sale_product_name;
-    public javax.swing.JTextField txt_sale_product_quantity;
+    public javax.swing.JTextField txt_sale_quantity;
     public javax.swing.JTextField txt_sale_stock;
     public javax.swing.JTextField txt_sale_subtotal;
     public javax.swing.JTextField txt_sale_total_to_pay;

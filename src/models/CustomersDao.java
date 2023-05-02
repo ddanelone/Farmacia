@@ -112,4 +112,28 @@ public class CustomersDao {
           
           }
       }   
+      
+       //Buscar un Cliente
+       public Customers searchCustomer(int id) {
+        String query = "SELECT full_name, address, telephone, email FROM customers WHERE id = ?";
+        Customers customer = new Customers();
+        
+        try {
+            conn = cn.getConnection();
+            pst = conn.prepareStatement(query);
+            pst.setInt(1,id);
+            rs = pst.executeQuery();
+            
+            if(rs.next()) {
+                customer.setId(rs.getInt("id"));
+                customer.setFull_name(rs.getString("full_name"));
+                customer.setAddress(rs.getString("address"));
+                customer.setTelephone(rs.getString("telephone"));
+                customer.setEmail(rs.getString("email"));
+            }            
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }
+        return customer;
+       }
 }
